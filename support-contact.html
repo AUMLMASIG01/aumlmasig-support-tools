@@ -89,7 +89,8 @@
     }
 
     .form-panel,
-    .result-panel {
+    .result-panel,
+    .handoff-panel {
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -194,7 +195,8 @@
       transform: scale(0.98);
     }
 
-    .actions {
+    .actions,
+    .handoff-actions {
       display: grid;
       gap: 10px;
       margin-top: 20px;
@@ -240,7 +242,8 @@
       border-color: #bdd4d8;
     }
 
-    .result-panel h2 {
+    .result-panel h2,
+    .handoff-panel h2 {
       margin: 0 0 10px;
       font-size: 1.2rem;
       line-height: 1.3;
@@ -258,6 +261,34 @@
       margin: 10px 0 0;
       color: var(--accent-strong);
       font-weight: 750;
+    }
+
+    .handoff-panel {
+      margin-top: 18px;
+      padding: 16px;
+      border-color: #c7d7d2;
+    }
+
+    .handoff-panel[hidden],
+    .handoff-action[hidden] {
+      display: none;
+    }
+
+    .handoff-panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .handoff-note {
+      margin-top: 14px;
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface-strong);
+    }
+
+    .handoff-note + .handoff-note {
+      margin-top: 10px;
     }
 
     .sr-only {
@@ -279,6 +310,7 @@
 
       .form-panel,
       .result-panel,
+      .handoff-panel,
       .notice {
         padding: 22px;
       }
@@ -292,8 +324,15 @@
         grid-column: 1 / -1;
       }
 
-      .actions {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+      .actions,
+      .handoff-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 920px) {
+      .handoff-actions {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
       }
     }
   </style>
@@ -460,9 +499,7 @@
 
       <div class="actions" aria-label="表單操作">
         <button class="primary" type="submit">產生客服單</button>
-        <button class="secondary" id="copyButton" type="button">複製客服單</button>
         <button class="secondary" id="clearButton" type="button">清除重填</button>
-        <a class="button-link" href="index.html">返回一鍵診斷器</a>
       </div>
     </form>
 
@@ -472,14 +509,41 @@
       <textarea id="ticketOutput" readonly></textarea>
       <p class="status-message" id="statusMessage" aria-live="polite"></p>
     </section>
+
+    <section class="handoff-panel" id="handoffPanel" aria-labelledby="handoffTitle" hidden>
+      <h2 id="handoffTitle">下一步：請將客服單傳給 AUMLMASIG</h2>
+      <p>系統已產生您的客服單。請選擇以下其中一種方式傳送給 AUMLMASIG 客服，我們會依照您提供的資訊協助確認。</p>
+      <div class="handoff-actions" aria-label="客服單傳送方式">
+        <button class="primary handoff-action" id="copyButton" type="button">複製客服單</button>
+        <button class="secondary handoff-action" id="emailButton" type="button" hidden>用 Email 傳送</button>
+        <a class="button-link handoff-action" id="shoplineButton" href="#" target="_blank" rel="noopener" hidden>前往購買平台客服</a>
+        <a class="button-link handoff-action" id="lineButton" href="#" target="_blank" rel="noopener" hidden>前往 LINE 客服</a>
+        <a class="button-link handoff-action" id="diagnosisButton" href="#" hidden>返回一鍵診斷器</a>
+      </div>
+      <p class="handoff-note" id="platformContactNote" hidden>如果您已經在 Shopline、蝦皮、PChome、MOMO、Yahoo 或露天下單，建議優先透過原購買平台聯繫客服，並貼上本頁產生的客服單，方便核對訂單與售後流程。</p>
+      <p class="handoff-note">若需要提供照片或截圖，請在 Email 或平台客服訊息中手動附上相關圖片，例如：商品安裝照片、裝置管理員截圖、磁碟管理截圖、BIOS 畫面或錯誤訊息截圖。</p>
+    </section>
   </main>
 
   <script>
+    const AUM_SUPPORT_CONFIG = {
+      supportEmail: "請先填入正式客服信箱",
+      shoplineContactUrl: "",
+      lineContactUrl: "",
+      diagnosisUrl: "https://aumlmasig01.github.io/aumlmasig-support-tools/"
+    };
+
     (function () {
       var form = document.getElementById("supportForm");
       var output = document.getElementById("ticketOutput");
       var copyButton = document.getElementById("copyButton");
       var clearButton = document.getElementById("clearButton");
+      var emailButton = document.getElementById("emailButton");
+      var shoplineButton = document.getElementById("shoplineButton");
+      var lineButton = document.getElementById("lineButton");
+      var diagnosisButton = document.getElementById("diagnosisButton");
+      var handoffPanel = document.getElementById("handoffPanel");
+      var platformContactNote = document.getElementById("platformContactNote");
       var statusMessage = document.getElementById("statusMessage");
 
       var ticketFields = [
@@ -549,16 +613,64 @@
         statusMessage.textContent = message;
       }
 
+      function hasGeneratedTicket() {
+        return output.value.trim().length > 0;
+      }
+
+      function isUsableEmail(email) {
+        return email &&
+          email !== "請先填入正式客服信箱" &&
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      function configureOptionalHandoff() {
+        var supportEmailReady = isUsableEmail(AUM_SUPPORT_CONFIG.supportEmail);
+        var shoplineReady = AUM_SUPPORT_CONFIG.shoplineContactUrl.trim().length > 0;
+        var lineReady = AUM_SUPPORT_CONFIG.lineContactUrl.trim().length > 0;
+        var diagnosisReady = AUM_SUPPORT_CONFIG.diagnosisUrl.trim().length > 0;
+
+        emailButton.hidden = !supportEmailReady;
+        shoplineButton.hidden = !shoplineReady;
+        lineButton.hidden = !lineReady;
+        diagnosisButton.hidden = !diagnosisReady;
+        platformContactNote.hidden = !shoplineReady;
+
+        if (shoplineReady) {
+          shoplineButton.href = AUM_SUPPORT_CONFIG.shoplineContactUrl;
+        }
+
+        if (lineReady) {
+          lineButton.href = AUM_SUPPORT_CONFIG.lineContactUrl;
+        }
+
+        if (diagnosisReady) {
+          diagnosisButton.href = AUM_SUPPORT_CONFIG.diagnosisUrl;
+        }
+      }
+
+      function requireGeneratedTicket() {
+        if (hasGeneratedTicket()) {
+          return true;
+        }
+
+        setStatus("請先填寫資料並點擊「產生客服單」。");
+        return false;
+      }
+
       form.addEventListener("submit", function (event) {
         event.preventDefault();
         output.value = buildTicket();
-        setStatus("客服單已產生，請確認內容後複製給 AUMLMASIG 客服。");
+        handoffPanel.hidden = false;
+        setStatus("客服單已產生，請選擇下方方式傳給 AUMLMASIG 客服。");
         output.focus();
       });
 
       copyButton.addEventListener("click", function () {
-        var ticketText = output.value.trim() ? output.value : buildTicket();
-        output.value = ticketText;
+        if (!requireGeneratedTicket()) {
+          return;
+        }
+
+        var ticketText = output.value;
 
         function confirmCopied() {
           setStatus("已複製，可貼給 AUMLMASIG 客服確認。");
@@ -590,12 +702,31 @@
         reportCopyLimit();
       });
 
+      emailButton.addEventListener("click", function () {
+        if (!requireGeneratedTicket()) {
+          return;
+        }
+
+        var subject = "AUMLMASIG 客服協助確認｜請協助確認相容性或售後問題";
+        var mailtoUrl = "mailto:" +
+          encodeURIComponent(AUM_SUPPORT_CONFIG.supportEmail) +
+          "?subject=" +
+          encodeURIComponent(subject) +
+          "&body=" +
+          encodeURIComponent(output.value);
+
+        window.location.href = mailtoUrl;
+      });
+
       clearButton.addEventListener("click", function () {
         form.reset();
         output.value = "";
+        handoffPanel.hidden = true;
         setStatus("");
         document.getElementById("orderNumber").focus();
       });
+
+      configureOptionalHandoff();
     })();
   </script>
 </body>
