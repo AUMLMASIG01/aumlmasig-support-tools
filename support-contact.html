@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AUMLMASIG 客服協助確認表</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --page: #f6f7f9;
+      --surface: #ffffff;
+      --surface-strong: #f0f5f7;
+      --text: #172126;
+      --muted: #5b6970;
+      --line: #d6dde1;
+      --focus: #0b6f86;
+      --accent: #0f7b63;
+      --accent-strong: #0b5f4d;
+      --risk: #a9471d;
+      --risk-soft: #fff3ec;
+      --shadow: 0 14px 38px rgba(17, 24, 39, 0.08);
+      --radius: 8px;
+      font-family: "Microsoft JhengHei", "PingFang TC", "Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--page);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page-shell {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    .page-header {
+      padding: 8px 0 20px;
+    }
+
+    .page-header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.55rem, 6vw, 2.6rem);
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .page-header p {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .notice {
+      margin: 0 0 18px;
+      padding: 16px;
+      background: var(--risk-soft);
+      border: 1px solid #f2c9b6;
+      border-radius: var(--radius);
+    }
+
+    .notice h2 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      line-height: 1.3;
+      color: var(--risk);
+    }
+
+    .notice ol {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .notice li + li {
+      margin-top: 6px;
+    }
+
+    .form-panel,
+    .result-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .form-panel {
+      padding: 16px;
+    }
+
+    .field-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label,
+    .legend {
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px 13px;
+      color: var(--text);
+      background: #ffffff;
+      font: inherit;
+      min-height: 46px;
+    }
+
+    textarea {
+      min-height: 116px;
+      resize: vertical;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus,
+    .chip input:focus-visible + span,
+    button:focus-visible,
+    .button-link:focus-visible {
+      outline: 3px solid rgba(11, 111, 134, 0.22);
+      outline-offset: 2px;
+      border-color: var(--focus);
+    }
+
+    fieldset {
+      border: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      min-height: 44px;
+      cursor: pointer;
+    }
+
+    .chip input {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .chip span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 14px;
+      background: var(--surface-strong);
+      color: var(--text);
+      font-weight: 650;
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease, transform 150ms ease;
+      user-select: none;
+    }
+
+    .chip input:checked + span {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .chip:active span {
+      transform: scale(0.98);
+    }
+
+    .actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button,
+    .button-link {
+      min-height: 46px;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      padding: 11px 14px;
+      font: inherit;
+      font-weight: 800;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .primary:hover {
+      background: var(--accent-strong);
+    }
+
+    .secondary,
+    .button-link {
+      background: #ffffff;
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .secondary:hover,
+    .button-link:hover {
+      background: var(--surface-strong);
+    }
+
+    .result-panel {
+      margin-top: 18px;
+      padding: 16px;
+      border-color: #bdd4d8;
+    }
+
+    .result-panel h2 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    #ticketOutput {
+      min-height: 360px;
+      background: #fbfdfd;
+      border-color: #bdd4d8;
+      white-space: pre-wrap;
+    }
+
+    .status-message {
+      min-height: 28px;
+      margin: 10px 0 0;
+      color: var(--accent-strong);
+      font-weight: 750;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (min-width: 760px) {
+      .page-shell {
+        padding: 36px 24px 56px;
+      }
+
+      .form-panel,
+      .result-panel,
+      .notice {
+        padding: 22px;
+      }
+
+      .field-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px 18px;
+      }
+
+      .field-wide {
+        grid-column: 1 / -1;
+      }
+
+      .actions {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="page-header">
+      <h1>AUMLMASIG 客服協助確認表</h1>
+      <p>請填寫下方資料，系統會自動產生客服單。完成後請複製內容並貼給 AUMLMASIG 客服，我們會依照您提供的資訊協助確認。</p>
+    </header>
+
+    <section class="notice" aria-labelledby="noticeTitle">
+      <h2 id="noticeTitle">填寫前請先確認</h2>
+      <ol>
+        <li>請勿提供密碼、金鑰、信用卡完整資料、私人帳號或其他敏感資訊。</li>
+        <li>客服會依您提供的資料協助判斷，但實際相容性仍會受到主機板、BIOS、作業系統、插槽頻寬、線材、驅動程式與周邊設備狀態影響。</li>
+        <li>若涉及退換貨、保固、檢測或平台訂單問題，需依購買平台規範與 AUMLMASIG 售後流程處理。</li>
+        <li>如果不確定是否適合購買，建議先提供主機型號與需求，由客服協助確認後再下單。</li>
+      </ol>
+    </section>
+
+    <form class="form-panel" id="supportForm">
+      <div class="field-grid">
+        <fieldset class="field field-wide" data-ticket-label="諮詢類型" data-field-name="consultType">
+          <legend class="legend">諮詢類型</legend>
+          <div class="chip-group">
+            <label class="chip"><input type="radio" name="consultType" value="購買前選型"><span>購買前選型</span></label>
+            <label class="chip"><input type="radio" name="consultType" value="購買後技術支援"><span>購買後技術支援</span></label>
+            <label class="chip"><input type="radio" name="consultType" value="退換貨 / 保固確認"><span>退換貨 / 保固確認</span></label>
+            <label class="chip"><input type="radio" name="consultType" value="其他"><span>其他</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field field-wide" data-ticket-label="購買平台" data-field-name="purchasePlatform">
+          <legend class="legend">購買平台</legend>
+          <div class="chip-group">
+            <label class="chip"><input type="radio" name="purchasePlatform" value="官網"><span>官網</span></label>
+            <label class="chip"><input type="radio" name="purchasePlatform" value="蝦皮"><span>蝦皮</span></label>
+            <label class="chip"><input type="radio" name="purchasePlatform" value="PChome"><span>PChome</span></label>
+            <label class="chip"><input type="radio" name="purchasePlatform" value="MOMO"><span>MOMO</span></label>
+            <label class="chip"><input type="radio" name="purchasePlatform" value="Yahoo"><span>Yahoo</span></label>
+            <label class="chip"><input type="radio" name="purchasePlatform" value="露天"><span>露天</span></label>
+            <label class="chip"><input type="radio" name="purchasePlatform" value="其他"><span>其他</span></label>
+            <label class="chip"><input type="radio" name="purchasePlatform" value="尚未購買"><span>尚未購買</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field" data-ticket-label="訂單編號" data-field-name="orderNumber">
+          <label for="orderNumber">訂單編號</label>
+          <input id="orderNumber" name="orderNumber" type="text" autocomplete="off">
+        </div>
+
+        <div class="field" data-ticket-label="商品名稱或商品連結" data-field-name="productInfo">
+          <label for="productInfo">商品名稱或商品連結</label>
+          <input id="productInfo" name="productInfo" type="text" autocomplete="off">
+        </div>
+
+        <div class="field" data-ticket-label="主機板 / 筆電 / 迷你主機 / 整機型號" data-field-name="hostModel">
+          <label for="hostModel">主機板 / 筆電 / 迷你主機 / 整機型號</label>
+          <input id="hostModel" name="hostModel" type="text" autocomplete="off">
+        </div>
+
+        <div class="field" data-ticket-label="CPU 型號" data-field-name="cpuModel">
+          <label for="cpuModel">CPU 型號</label>
+          <input id="cpuModel" name="cpuModel" type="text" autocomplete="off">
+        </div>
+
+        <fieldset class="field field-wide" data-ticket-label="作業系統" data-field-name="operatingSystem">
+          <legend class="legend">作業系統</legend>
+          <div class="chip-group">
+            <label class="chip"><input type="radio" name="operatingSystem" value="Windows 11"><span>Windows 11</span></label>
+            <label class="chip"><input type="radio" name="operatingSystem" value="Windows 10"><span>Windows 10</span></label>
+            <label class="chip"><input type="radio" name="operatingSystem" value="Linux"><span>Linux</span></label>
+            <label class="chip"><input type="radio" name="operatingSystem" value="macOS"><span>macOS</span></label>
+            <label class="chip"><input type="radio" name="operatingSystem" value="其他"><span>其他</span></label>
+            <label class="chip"><input type="radio" name="operatingSystem" value="不確定"><span>不確定</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field field-wide" data-ticket-label="想達成的用途" data-field-name="intendedUse">
+          <legend class="legend">想達成的用途</legend>
+          <div class="chip-group">
+            <label class="chip"><input type="checkbox" name="intendedUse" value="增加 SSD"><span>增加 SSD</span></label>
+            <label class="chip"><input type="checkbox" name="intendedUse" value="增加 SATA 硬碟"><span>增加 SATA 硬碟</span></label>
+            <label class="chip"><input type="checkbox" name="intendedUse" value="增加 USB 埠"><span>增加 USB 埠</span></label>
+            <label class="chip"><input type="checkbox" name="intendedUse" value="增加網路埠"><span>增加網路埠</span></label>
+            <label class="chip"><input type="checkbox" name="intendedUse" value="RAID"><span>RAID</span></label>
+            <label class="chip"><input type="checkbox" name="intendedUse" value="高速傳輸"><span>高速傳輸</span></label>
+            <label class="chip"><input type="checkbox" name="intendedUse" value="長時間備份 / 監控 / NAS"><span>長時間備份 / 監控 / NAS</span></label>
+            <label class="chip"><input type="checkbox" name="intendedUse" value="其他"><span>其他</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field field-wide" data-ticket-label="目前遇到的問題" data-field-name="currentIssue">
+          <legend class="legend">目前遇到的問題</legend>
+          <div class="chip-group">
+            <label class="chip"><input type="checkbox" name="currentIssue" value="無法辨識"><span>無法辨識</span></label>
+            <label class="chip"><input type="checkbox" name="currentIssue" value="速度異常"><span>速度異常</span></label>
+            <label class="chip"><input type="checkbox" name="currentIssue" value="會掉速"><span>會掉速</span></label>
+            <label class="chip"><input type="checkbox" name="currentIssue" value="溫度高"><span>溫度高</span></label>
+            <label class="chip"><input type="checkbox" name="currentIssue" value="無法開機"><span>無法開機</span></label>
+            <label class="chip"><input type="checkbox" name="currentIssue" value="驅動安裝失敗"><span>驅動安裝失敗</span></label>
+            <label class="chip"><input type="checkbox" name="currentIssue" value="不確定相容"><span>不確定相容</span></label>
+            <label class="chip"><input type="checkbox" name="currentIssue" value="不知道如何安裝"><span>不知道如何安裝</span></label>
+            <label class="chip"><input type="checkbox" name="currentIssue" value="其他"><span>其他</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field field-wide" data-ticket-label="PCIe 插槽" data-field-name="pcieSlot">
+          <legend class="legend">主機是否有可用 PCIe 插槽</legend>
+          <div class="chip-group">
+            <label class="chip"><input type="radio" name="pcieSlot" value="不確定"><span>不確定</span></label>
+            <label class="chip"><input type="radio" name="pcieSlot" value="PCIe x1"><span>PCIe x1</span></label>
+            <label class="chip"><input type="radio" name="pcieSlot" value="PCIe x4"><span>PCIe x4</span></label>
+            <label class="chip"><input type="radio" name="pcieSlot" value="PCIe x8"><span>PCIe x8</span></label>
+            <label class="chip"><input type="radio" name="pcieSlot" value="PCIe x16"><span>PCIe x16</span></label>
+            <label class="chip"><input type="radio" name="pcieSlot" value="沒有"><span>沒有</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field field-wide" data-ticket-label="M.2 類型" data-field-name="m2Type">
+          <legend class="legend">M.2 類型</legend>
+          <div class="chip-group">
+            <label class="chip"><input type="radio" name="m2Type" value="不確定"><span>不確定</span></label>
+            <label class="chip"><input type="radio" name="m2Type" value="NVMe M.2"><span>NVMe M.2</span></label>
+            <label class="chip"><input type="radio" name="m2Type" value="SATA M.2"><span>SATA M.2</span></label>
+            <label class="chip"><input type="radio" name="m2Type" value="不需要 M.2"><span>不需要 M.2</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field field-wide" data-ticket-label="是否長時間使用" data-field-name="longRunningUse">
+          <legend class="legend">是否長時間使用</legend>
+          <div class="chip-group">
+            <label class="chip"><input type="radio" name="longRunningUse" value="否，一般使用"><span>否，一般使用</span></label>
+            <label class="chip"><input type="radio" name="longRunningUse" value="是，長時間備份 / 監控 / 伺服器 / 工作站使用"><span>是，長時間備份 / 監控 / 伺服器 / 工作站使用</span></label>
+            <label class="chip"><input type="radio" name="longRunningUse" value="不確定"><span>不確定</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field field-wide" data-ticket-label="已嘗試過的排除方式" data-field-name="triedSteps">
+          <label for="triedSteps">已嘗試過的排除方式</label>
+          <textarea id="triedSteps" name="triedSteps"></textarea>
+        </div>
+
+        <fieldset class="field field-wide" data-ticket-label="是否有照片或截圖" data-field-name="hasMedia">
+          <legend class="legend">是否有照片或截圖</legend>
+          <div class="chip-group">
+            <label class="chip"><input type="radio" name="hasMedia" value="有"><span>有</span></label>
+            <label class="chip"><input type="radio" name="hasMedia" value="沒有"><span>沒有</span></label>
+            <label class="chip"><input type="radio" name="hasMedia" value="稍後補充"><span>稍後補充</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field field-wide" data-ticket-label="一鍵診斷器產生的診斷單" data-field-name="diagnosisReport">
+          <label for="diagnosisReport">一鍵診斷器產生的診斷單</label>
+          <textarea id="diagnosisReport" name="diagnosisReport"></textarea>
+        </div>
+
+        <div class="field field-wide" data-ticket-label="補充說明" data-field-name="extraNotes">
+          <label for="extraNotes">補充說明</label>
+          <textarea id="extraNotes" name="extraNotes"></textarea>
+        </div>
+      </div>
+
+      <div class="actions" aria-label="表單操作">
+        <button class="primary" type="submit">產生客服單</button>
+        <button class="secondary" id="copyButton" type="button">複製客服單</button>
+        <button class="secondary" id="clearButton" type="button">清除重填</button>
+        <a class="button-link" href="index.html">返回一鍵診斷器</a>
+      </div>
+    </form>
+
+    <section class="result-panel" aria-labelledby="resultTitle">
+      <h2 id="resultTitle">客服單內容</h2>
+      <label class="sr-only" for="ticketOutput">產生後的客服單文字</label>
+      <textarea id="ticketOutput" readonly></textarea>
+      <p class="status-message" id="statusMessage" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById("supportForm");
+      var output = document.getElementById("ticketOutput");
+      var copyButton = document.getElementById("copyButton");
+      var clearButton = document.getElementById("clearButton");
+      var statusMessage = document.getElementById("statusMessage");
+
+      var ticketFields = [
+        ["諮詢類型", "consultType"],
+        ["購買平台", "purchasePlatform"],
+        ["訂單編號", "orderNumber"],
+        ["商品名稱或商品連結", "productInfo"],
+        ["主機板 / 筆電 / 迷你主機 / 整機型號", "hostModel"],
+        ["CPU 型號", "cpuModel"],
+        ["作業系統", "operatingSystem"],
+        ["想達成的用途", "intendedUse"],
+        ["目前遇到的問題", "currentIssue"],
+        ["PCIe 插槽", "pcieSlot"],
+        ["M.2 類型", "m2Type"],
+        ["是否長時間使用", "longRunningUse"],
+        ["已嘗試過的排除方式", "triedSteps"],
+        ["是否有照片或截圖", "hasMedia"],
+        ["一鍵診斷器產生的診斷單", "diagnosisReport"],
+        ["補充說明", "extraNotes"]
+      ];
+
+      function getFieldValue(name) {
+        var controls = Array.prototype.slice.call(form.elements[name] ? form.elements[name] : []);
+
+        if (!controls.length && form.elements[name]) {
+          controls = [form.elements[name]];
+        }
+
+        if (!controls.length) {
+          return "";
+        }
+
+        var firstControl = controls[0];
+
+        if (firstControl.type === "radio") {
+          var checkedRadio = controls.find(function (control) {
+            return control.checked;
+          });
+          return checkedRadio ? checkedRadio.value : "";
+        }
+
+        if (firstControl.type === "checkbox") {
+          return controls
+            .filter(function (control) {
+              return control.checked;
+            })
+            .map(function (control) {
+              return control.value;
+            })
+            .join("、");
+        }
+
+        return firstControl.value.trim();
+      }
+
+      function buildTicket() {
+        var lines = ["【AUMLMASIG 客服協助確認】", ""];
+
+        ticketFields.forEach(function (field) {
+          lines.push(field[0] + "：" + getFieldValue(field[1]));
+        });
+
+        return lines.join("\n");
+      }
+
+      function setStatus(message) {
+        statusMessage.textContent = message;
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        output.value = buildTicket();
+        setStatus("客服單已產生，請確認內容後複製給 AUMLMASIG 客服。");
+        output.focus();
+      });
+
+      copyButton.addEventListener("click", function () {
+        var ticketText = output.value.trim() ? output.value : buildTicket();
+        output.value = ticketText;
+
+        function confirmCopied() {
+          setStatus("已複製，可貼給 AUMLMASIG 客服確認。");
+        }
+
+        function reportCopyLimit() {
+          setStatus("瀏覽器未允許自動複製，請選取客服單內容後複製。");
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(ticketText).then(confirmCopied).catch(function () {
+            output.focus();
+            output.select();
+            if (document.execCommand("copy")) {
+              confirmCopied();
+              return;
+            }
+            reportCopyLimit();
+          });
+          return;
+        }
+
+        output.focus();
+        output.select();
+        if (document.execCommand("copy")) {
+          confirmCopied();
+          return;
+        }
+        reportCopyLimit();
+      });
+
+      clearButton.addEventListener("click", function () {
+        form.reset();
+        output.value = "";
+        setStatus("");
+        document.getElementById("orderNumber").focus();
+      });
+    })();
+  </script>
+</body>
+</html>
