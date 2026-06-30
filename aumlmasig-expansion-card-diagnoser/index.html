@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>擴充卡一鍵診斷器｜AUMLMASIG</title>
+  <link rel="stylesheet" href="styles/diagnoser.css">
+  <script defer src="src/config.js"></script>
+  <script defer src="src/report-generator.js"></script>
+  <script defer src="src/rules-engine.js"></script>
+  <script defer src="src/dom-utils.js"></script>
+  <script defer src="src/app.js"></script>
+</head>
+<body>
+  <main class="auml-page">
+    <div class="auml-shell">
+      <noscript>
+        <div class="auml-noscript">此診斷器需要啟用 JavaScript 才能產生建議與診斷單。</div>
+      </noscript>
+
+      <header class="auml-hero">
+        <p class="auml-kicker">AUMLMASIG 購買前相容確認</p>
+        <h1>擴充卡一鍵診斷器</h1>
+        <p class="auml-subtitle">照三步選完，下方會給你「建議卡種 + 超值 / 穩定 / 專業方案 + 可複製診斷單」。</p>
+      </header>
+
+      <form id="diagnoser-form" class="auml-form">
+        <section class="auml-section" aria-labelledby="step-1-title">
+          <h2 id="step-1-title">Step 1｜快速問診</h2>
+          <div class="auml-grid">
+            <div class="auml-field">
+              <label class="auml-label" for="device">你要裝在哪一台？</label>
+              <input id="device" name="device" type="text" autocomplete="off" aria-describedby="device-help">
+              <p id="device-help" class="auml-help">可填 CPU、主機板型號或整機型號，越完整越準。例：ASUS Z790 / B550 主機板 / 迷你主機型號 / 工作站型號</p>
+            </div>
+
+            <fieldset class="auml-field">
+              <legend class="auml-label">機器類型</legend>
+              <div class="auml-choice-grid">
+                <label class="auml-choice"><input type="radio" name="device_type" value="unknown" checked>不確定 / 不填</label>
+                <label class="auml-choice"><input type="radio" name="device_type" value="desktop">桌上型電腦</label>
+                <label class="auml-choice"><input type="radio" name="device_type" value="mini">迷你主機 / 小主機</label>
+                <label class="auml-choice"><input type="radio" name="device_type" value="laptop">筆電</label>
+                <label class="auml-choice"><input type="radio" name="device_type" value="nas">NAS / 監控主機</label>
+                <label class="auml-choice"><input type="radio" name="device_type" value="workstation">工作站 / 伺服器</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="auml-field">
+              <legend class="auml-label">你要達成什麼目的？</legend>
+              <div class="auml-choice-grid">
+                <label class="auml-choice"><input type="radio" name="goal" value="unknown" checked>請選擇</label>
+                <label class="auml-choice"><input type="radio" name="goal" value="nvme_basic">增加 NVMe M.2 SSD</label>
+                <label class="auml-choice"><input type="radio" name="goal" value="nvme_raid">多顆 NVMe / RAID / 高速工作流</label>
+                <label class="auml-choice"><input type="radio" name="goal" value="u2">使用 U.2 NVMe SSD</label>
+                <label class="auml-choice"><input type="radio" name="goal" value="sata">增加 SATA 硬碟</label>
+                <label class="auml-choice"><input type="radio" name="goal" value="usb">增加 USB 埠</label>
+                <label class="auml-choice"><input type="radio" name="goal" value="nic">增加網路埠</label>
+                <label class="auml-choice"><input type="radio" name="goal" value="other">其他 / 不確定</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="auml-field">
+              <legend class="auml-label">你遇到的痛點</legend>
+              <div class="auml-chip-grid">
+                <label class="auml-chip"><input type="checkbox" name="pain" value="slot">插槽不夠 / 想擴充</label>
+                <label class="auml-chip"><input type="checkbox" name="pain" value="speed">速度不穩 / 會掉速</label>
+                <label class="auml-chip"><input type="checkbox" name="pain" value="temp">溫度高 / 怕降速</label>
+                <label class="auml-chip"><input type="checkbox" name="pain" value="compat">不知道相容 / 怕買錯</label>
+                <label class="auml-chip"><input type="checkbox" name="pain" value="install">不會裝 / 沒把握</label>
+              </div>
+            </fieldset>
+          </div>
+        </section>
+
+        <section class="auml-section" aria-labelledby="step-2-title">
+          <h2 id="step-2-title">Step 2｜30 秒相容確認</h2>
+          <div class="auml-grid">
+            <fieldset class="auml-field">
+              <legend class="auml-label">主機內有可用 PCIe 插槽嗎？</legend>
+              <div class="auml-choice-grid">
+                <label class="auml-choice"><input type="radio" name="pcie" value="unknown" checked>不確定</label>
+                <label class="auml-choice"><input type="radio" name="pcie" value="x1">有 PCIe x1</label>
+                <label class="auml-choice"><input type="radio" name="pcie" value="x4">有 PCIe x4</label>
+                <label class="auml-choice"><input type="radio" name="pcie" value="x16">有 PCIe x16</label>
+                <label class="auml-choice"><input type="radio" name="pcie" value="none">沒有 / 筆電或迷你主機無法裝</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="auml-field">
+              <legend class="auml-label">你的 M.2 類型</legend>
+              <div class="auml-choice-grid">
+                <label class="auml-choice"><input type="radio" name="m2_type" value="unknown" checked>不確定</label>
+                <label class="auml-choice"><input type="radio" name="m2_type" value="nvme">NVMe</label>
+                <label class="auml-choice"><input type="radio" name="m2_type" value="sata">SATA</label>
+                <label class="auml-choice"><input type="radio" name="m2_type" value="mixed">混合 / 不知道怎麼分</label>
+                <label class="auml-choice"><input type="radio" name="m2_type" value="not_needed">不需要 M.2</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="auml-field">
+              <legend class="auml-label">你會長時間跑嗎？</legend>
+              <div class="auml-choice-grid">
+                <label class="auml-choice"><input type="radio" name="longrun" value="unknown" checked>不確定</label>
+                <label class="auml-choice"><input type="radio" name="longrun" value="no">不會，一般使用</label>
+                <label class="auml-choice"><input type="radio" name="longrun" value="yes">會，渲染 / 備份 / 伺服器 / 監控 / 長時間運作</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="auml-field">
+              <legend class="auml-label">作業系統</legend>
+              <div class="auml-choice-grid">
+                <label class="auml-choice"><input type="radio" name="os" value="unknown" checked>不確定</label>
+                <label class="auml-choice"><input type="radio" name="os" value="win11">Windows 11</label>
+                <label class="auml-choice"><input type="radio" name="os" value="win10">Windows 10</label>
+                <label class="auml-choice"><input type="radio" name="os" value="linux">Linux / NAS</label>
+                <label class="auml-choice"><input type="radio" name="os" value="other">其他</label>
+              </div>
+            </fieldset>
+
+            <div class="auml-field">
+              <label class="auml-label" for="notes">補充說明</label>
+              <textarea id="notes" name="notes" aria-describedby="notes-help"></textarea>
+              <p id="notes-help" class="auml-help">例：想裝 2TB / 4 顆 SSD / RAID0 / 需要 10G 網卡 / USB 20Gbps</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="auml-section" aria-labelledby="step-3-title">
+          <h2 id="step-3-title">Step 3｜一鍵產生建議</h2>
+          <div class="auml-actions">
+            <button class="auml-button auml-button-primary" type="submit">立即診斷</button>
+            <button class="auml-button auml-button-secondary" type="reset">清除重填</button>
+          </div>
+        </section>
+      </form>
+
+      <section id="diagnosis-result" class="auml-result" aria-live="polite" hidden>
+        <span id="result-risk" class="auml-risk-pill"></span>
+        <h2 id="result-title"></h2>
+        <p id="result-summary"></p>
+
+        <div class="auml-result-grid">
+          <div class="auml-result-block">
+            <h3>診斷摘要</h3>
+            <p>建議卡種：<strong id="recommended-category"></strong></p>
+          </div>
+
+          <div class="auml-result-block">
+            <h3>建議方案</h3>
+            <div id="plan-list" class="auml-plan-list"></div>
+          </div>
+
+          <div class="auml-result-block">
+            <h3>相容提醒</h3>
+            <ul id="warning-list"></ul>
+          </div>
+
+          <div class="auml-result-block">
+            <h3>購買前確認</h3>
+            <ul id="checklist"></ul>
+          </div>
+
+          <div class="auml-result-block auml-result-block-wide">
+            <h3>可複製診斷單</h3>
+            <textarea id="report-text" class="auml-report-box" readonly></textarea>
+            <div class="auml-result-actions">
+              <button id="copy-report" class="auml-button auml-button-primary" type="button">一鍵複製診斷單</button>
+              <a id="product-link" class="auml-link-button" target="_blank" rel="noopener" hidden>查看推薦商品</a>
+              <a id="download-link" class="auml-link-button" target="_blank" rel="noopener" hidden>下載中心</a>
+              <a id="support-link" class="auml-link-button" target="_blank" rel="noopener" hidden>客服協助確認表</a>
+            </div>
+            <p id="no-product-message" class="auml-muted" hidden>請先聯繫客服確認</p>
+            <p id="copy-status" class="auml-copy-status" role="status"></p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

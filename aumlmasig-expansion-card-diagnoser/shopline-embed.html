@@ -1,0 +1,703 @@
+<section class="auml-diagnoser" aria-labelledby="auml-title">
+  <style>
+    .auml-diagnoser {
+      --auml-ink: #18212f;
+      --auml-muted: #5a6675;
+      --auml-line: #d9e1ea;
+      --auml-soft: #f4f7fb;
+      --auml-panel: #fff;
+      --auml-brand: #0b6b72;
+      --auml-brand-strong: #084f55;
+      --auml-warn: #9a5b00;
+      --auml-risk: #a13333;
+      --auml-ok: #16734f;
+      color: var(--auml-ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .auml-diagnoser * {
+      box-sizing: border-box;
+    }
+
+    .auml-shell {
+      width: min(1040px, 100%);
+      margin: 0 auto;
+      padding: 20px 14px 36px;
+    }
+
+    .auml-kicker {
+      margin: 0 0 8px;
+      color: var(--auml-brand);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .auml-diagnoser h2,
+    .auml-diagnoser h3,
+    .auml-diagnoser h4,
+    .auml-diagnoser p {
+      margin-top: 0;
+    }
+
+    #auml-title {
+      margin: 0 0 10px;
+      font-size: 2.25rem;
+      line-height: 1.15;
+    }
+
+    .auml-subtitle {
+      max-width: 780px;
+      margin-bottom: 18px;
+      color: var(--auml-muted);
+      font-size: 1.05rem;
+    }
+
+    .auml-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .auml-section,
+    .auml-result {
+      border: 1px solid var(--auml-line);
+      border-radius: 8px;
+      background: var(--auml-panel);
+      padding: 18px;
+    }
+
+    .auml-section h3,
+    .auml-result h3 {
+      margin-bottom: 14px;
+      font-size: 1.35rem;
+    }
+
+    .auml-grid,
+    .auml-choice-grid,
+    .auml-chip-grid,
+    .auml-plan-list,
+    .auml-result-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .auml-field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .auml-label {
+      font-weight: 700;
+    }
+
+    .auml-help,
+    .auml-muted {
+      color: var(--auml-muted);
+      font-size: 0.92rem;
+    }
+
+    .auml-diagnoser input[type="text"],
+    .auml-diagnoser textarea {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid #b8c5d2;
+      border-radius: 6px;
+      padding: 10px 12px;
+      color: var(--auml-ink);
+      font: inherit;
+      background: #fff;
+    }
+
+    .auml-diagnoser textarea {
+      min-height: 112px;
+      resize: vertical;
+    }
+
+    .auml-choice,
+    .auml-chip {
+      display: flex;
+      min-height: 44px;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #c4cfda;
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .auml-choice input,
+    .auml-chip input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--auml-brand);
+    }
+
+    .auml-choice:has(input:checked),
+    .auml-chip:has(input:checked) {
+      border-color: var(--auml-brand);
+      background: #e9f6f4;
+      box-shadow: inset 0 0 0 1px var(--auml-brand);
+    }
+
+    .auml-actions,
+    .auml-result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .auml-button,
+    .auml-link-button {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 10px 16px;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .auml-button-primary,
+    .auml-link-button {
+      background: var(--auml-brand);
+      color: #fff;
+    }
+
+    .auml-button-primary:hover,
+    .auml-link-button:hover {
+      background: var(--auml-brand-strong);
+    }
+
+    .auml-button-secondary {
+      border-color: #aebdcc;
+      background: #fff;
+      color: var(--auml-ink);
+    }
+
+    .auml-result {
+      margin-top: 18px;
+      border-top-width: 6px;
+    }
+
+    .auml-result[hidden],
+    .auml-diagnoser [hidden] {
+      display: none;
+    }
+
+    .auml-risk-pill {
+      display: inline-flex;
+      width: fit-content;
+      min-height: 34px;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 12px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .auml-risk-low {
+      border-top-color: var(--auml-ok);
+    }
+
+    .auml-risk-low .auml-risk-pill {
+      background: var(--auml-ok);
+    }
+
+    .auml-risk-medium {
+      border-top-color: var(--auml-warn);
+    }
+
+    .auml-risk-medium .auml-risk-pill {
+      background: var(--auml-warn);
+    }
+
+    .auml-risk-high {
+      border-top-color: var(--auml-risk);
+    }
+
+    .auml-risk-high .auml-risk-pill {
+      background: var(--auml-risk);
+    }
+
+    .auml-result-block {
+      border-top: 1px solid var(--auml-line);
+      padding-top: 14px;
+    }
+
+    .auml-plan {
+      border: 1px solid var(--auml-line);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--auml-soft);
+    }
+
+    .auml-report-box {
+      width: 100%;
+      min-height: 260px;
+      white-space: pre-wrap;
+    }
+
+    .auml-copy-status {
+      min-height: 24px;
+      color: var(--auml-ok);
+      font-weight: 700;
+    }
+
+    .auml-noscript {
+      border: 1px solid var(--auml-risk);
+      border-radius: 8px;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: #fff6f6;
+      color: var(--auml-risk);
+      font-weight: 700;
+    }
+
+    @media (min-width: 720px) {
+      .auml-shell {
+        padding: 32px 24px 56px;
+      }
+
+      #auml-title {
+        font-size: 3.5rem;
+      }
+
+      .auml-grid,
+      .auml-choice-grid,
+      .auml-result-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .auml-chip-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .auml-result-block-wide {
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+
+  <div class="auml-shell">
+    <noscript>
+      <div class="auml-noscript">此診斷器需要啟用 JavaScript 才能產生建議與診斷單。</div>
+    </noscript>
+
+    <p class="auml-kicker">AUMLMASIG 購買前相容確認</p>
+    <h2 id="auml-title">擴充卡一鍵診斷器</h2>
+    <p class="auml-subtitle">照三步選完，下方會給你「建議卡種 + 超值 / 穩定 / 專業方案 + 可複製診斷單」。</p>
+
+    <form class="auml-form" data-auml-form>
+      <section class="auml-section">
+        <h3>Step 1｜快速問診</h3>
+        <div class="auml-grid">
+          <div class="auml-field">
+            <label class="auml-label" for="auml-device">你要裝在哪一台？</label>
+            <input id="auml-device" name="device" type="text" autocomplete="off">
+            <p class="auml-help">可填 CPU、主機板型號或整機型號，越完整越準。例：ASUS Z790 / B550 主機板 / 迷你主機型號 / 工作站型號</p>
+          </div>
+
+          <fieldset class="auml-field">
+            <legend class="auml-label">機器類型</legend>
+            <div class="auml-choice-grid">
+              <label class="auml-choice"><input type="radio" name="device_type" value="unknown" checked>不確定 / 不填</label>
+              <label class="auml-choice"><input type="radio" name="device_type" value="desktop">桌上型電腦</label>
+              <label class="auml-choice"><input type="radio" name="device_type" value="mini">迷你主機 / 小主機</label>
+              <label class="auml-choice"><input type="radio" name="device_type" value="laptop">筆電</label>
+              <label class="auml-choice"><input type="radio" name="device_type" value="nas">NAS / 監控主機</label>
+              <label class="auml-choice"><input type="radio" name="device_type" value="workstation">工作站 / 伺服器</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="auml-field">
+            <legend class="auml-label">你要達成什麼目的？</legend>
+            <div class="auml-choice-grid">
+              <label class="auml-choice"><input type="radio" name="goal" value="unknown" checked>請選擇</label>
+              <label class="auml-choice"><input type="radio" name="goal" value="nvme_basic">增加 NVMe M.2 SSD</label>
+              <label class="auml-choice"><input type="radio" name="goal" value="nvme_raid">多顆 NVMe / RAID / 高速工作流</label>
+              <label class="auml-choice"><input type="radio" name="goal" value="u2">使用 U.2 NVMe SSD</label>
+              <label class="auml-choice"><input type="radio" name="goal" value="sata">增加 SATA 硬碟</label>
+              <label class="auml-choice"><input type="radio" name="goal" value="usb">增加 USB 埠</label>
+              <label class="auml-choice"><input type="radio" name="goal" value="nic">增加網路埠</label>
+              <label class="auml-choice"><input type="radio" name="goal" value="other">其他 / 不確定</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="auml-field">
+            <legend class="auml-label">你遇到的痛點</legend>
+            <div class="auml-chip-grid">
+              <label class="auml-chip"><input type="checkbox" name="pain" value="slot">插槽不夠 / 想擴充</label>
+              <label class="auml-chip"><input type="checkbox" name="pain" value="speed">速度不穩 / 會掉速</label>
+              <label class="auml-chip"><input type="checkbox" name="pain" value="temp">溫度高 / 怕降速</label>
+              <label class="auml-chip"><input type="checkbox" name="pain" value="compat">不知道相容 / 怕買錯</label>
+              <label class="auml-chip"><input type="checkbox" name="pain" value="install">不會裝 / 沒把握</label>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <section class="auml-section">
+        <h3>Step 2｜30 秒相容確認</h3>
+        <div class="auml-grid">
+          <fieldset class="auml-field">
+            <legend class="auml-label">主機內有可用 PCIe 插槽嗎？</legend>
+            <div class="auml-choice-grid">
+              <label class="auml-choice"><input type="radio" name="pcie" value="unknown" checked>不確定</label>
+              <label class="auml-choice"><input type="radio" name="pcie" value="x1">有 PCIe x1</label>
+              <label class="auml-choice"><input type="radio" name="pcie" value="x4">有 PCIe x4</label>
+              <label class="auml-choice"><input type="radio" name="pcie" value="x16">有 PCIe x16</label>
+              <label class="auml-choice"><input type="radio" name="pcie" value="none">沒有 / 筆電或迷你主機無法裝</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="auml-field">
+            <legend class="auml-label">你的 M.2 類型</legend>
+            <div class="auml-choice-grid">
+              <label class="auml-choice"><input type="radio" name="m2_type" value="unknown" checked>不確定</label>
+              <label class="auml-choice"><input type="radio" name="m2_type" value="nvme">NVMe</label>
+              <label class="auml-choice"><input type="radio" name="m2_type" value="sata">SATA</label>
+              <label class="auml-choice"><input type="radio" name="m2_type" value="mixed">混合 / 不知道怎麼分</label>
+              <label class="auml-choice"><input type="radio" name="m2_type" value="not_needed">不需要 M.2</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="auml-field">
+            <legend class="auml-label">你會長時間跑嗎？</legend>
+            <div class="auml-choice-grid">
+              <label class="auml-choice"><input type="radio" name="longrun" value="unknown" checked>不確定</label>
+              <label class="auml-choice"><input type="radio" name="longrun" value="no">不會，一般使用</label>
+              <label class="auml-choice"><input type="radio" name="longrun" value="yes">會，渲染 / 備份 / 伺服器 / 監控 / 長時間運作</label>
+            </div>
+          </fieldset>
+
+          <fieldset class="auml-field">
+            <legend class="auml-label">作業系統</legend>
+            <div class="auml-choice-grid">
+              <label class="auml-choice"><input type="radio" name="os" value="unknown" checked>不確定</label>
+              <label class="auml-choice"><input type="radio" name="os" value="win11">Windows 11</label>
+              <label class="auml-choice"><input type="radio" name="os" value="win10">Windows 10</label>
+              <label class="auml-choice"><input type="radio" name="os" value="linux">Linux / NAS</label>
+              <label class="auml-choice"><input type="radio" name="os" value="other">其他</label>
+            </div>
+          </fieldset>
+
+          <div class="auml-field">
+            <label class="auml-label" for="auml-notes">補充說明</label>
+            <textarea id="auml-notes" name="notes"></textarea>
+            <p class="auml-help">例：想裝 2TB / 4 顆 SSD / RAID0 / 需要 10G 網卡 / USB 20Gbps</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="auml-section">
+        <h3>Step 3｜一鍵產生建議</h3>
+        <div class="auml-actions">
+          <button class="auml-button auml-button-primary" type="submit">立即診斷</button>
+          <button class="auml-button auml-button-secondary" type="reset">清除重填</button>
+        </div>
+      </section>
+    </form>
+
+    <section class="auml-result" data-auml-result aria-live="polite" hidden>
+      <span class="auml-risk-pill" data-auml-risk></span>
+      <h3 data-auml-title></h3>
+      <p data-auml-summary></p>
+
+      <div class="auml-result-grid">
+        <div class="auml-result-block">
+          <h4>診斷摘要</h4>
+          <p>建議卡種：<strong data-auml-category></strong></p>
+        </div>
+        <div class="auml-result-block">
+          <h4>建議方案</h4>
+          <div class="auml-plan-list" data-auml-plans></div>
+        </div>
+        <div class="auml-result-block">
+          <h4>相容提醒</h4>
+          <ul data-auml-warnings></ul>
+        </div>
+        <div class="auml-result-block">
+          <h4>購買前確認</h4>
+          <ul data-auml-checklist></ul>
+        </div>
+        <div class="auml-result-block auml-result-block-wide">
+          <h4>可複製診斷單</h4>
+          <textarea class="auml-report-box" data-auml-report readonly></textarea>
+          <div class="auml-result-actions">
+            <button class="auml-button auml-button-primary" type="button" data-auml-copy>一鍵複製診斷單</button>
+            <a class="auml-link-button" data-auml-product target="_blank" rel="noopener" hidden>查看推薦商品</a>
+            <a class="auml-link-button" data-auml-download target="_blank" rel="noopener">下載中心</a>
+            <a class="auml-link-button" data-auml-support target="_blank" rel="noopener">客服協助確認表</a>
+          </div>
+          <p class="auml-muted" data-auml-no-product hidden>請先聯繫客服確認</p>
+          <p class="auml-copy-status" role="status" data-auml-copy-status></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var root = document.currentScript.closest(".auml-diagnoser");
+      var labels = {
+        deviceType: { unknown: "不確定 / 不填", desktop: "桌上型電腦", mini: "迷你主機 / 小主機", laptop: "筆電", nas: "NAS / 監控主機", workstation: "工作站 / 伺服器" },
+        goal: { unknown: "請選擇", nvme_basic: "增加 NVMe M.2 SSD", nvme_raid: "多顆 NVMe / RAID / 高速工作流", u2: "使用 U.2 NVMe SSD", sata: "增加 SATA 硬碟", usb: "增加 USB 埠", nic: "增加網路埠", other: "其他 / 不確定" },
+        pain: { slot: "插槽不夠 / 想擴充", speed: "速度不穩 / 會掉速", temp: "溫度高 / 怕降速", compat: "不知道相容 / 怕買錯", install: "不會裝 / 沒把握" },
+        pcie: { unknown: "不確定", x1: "有 PCIe x1", x4: "有 PCIe x4", x16: "有 PCIe x16", none: "沒有 / 筆電或迷你主機無法裝" },
+        m2Type: { unknown: "不確定", nvme: "NVMe", sata: "SATA", mixed: "混合 / 不知道怎麼分", not_needed: "不需要 M.2" },
+        longrun: { unknown: "不確定", no: "不會，一般使用", yes: "會，渲染 / 備份 / 伺服器 / 監控 / 長時間運作" },
+        os: { unknown: "不確定", win11: "Windows 11", win10: "Windows 10", linux: "Linux / NAS", other: "其他" }
+      };
+      var links = {
+        nvme_basic: "https://www.aumlmasig.com/categories/nvme-m2-m-key",
+        nvme_raid: "https://www.aumlmasig.com/categories/nvme-m2-m-key",
+        u2: "https://www.aumlmasig.com/categories/u-2",
+        sata: "https://www.aumlmasig.com/categories/sata3-0",
+        usb: "https://www.aumlmasig.com/categories/usb3-0-%E6%93%B4%E5%85%85%E5%8D%A1",
+        nic: "https://www.aumlmasig.com/categories/rj-45-network-card-gigabit-network-card"
+      };
+      var downloadCenterUrl = "https://www.aumlmasig.com/pages/new-page";
+      var supportUrl = "https://aumlmasig01.github.io/aumlmasig-support-tools/support-contact.html";
+      var categories = { nvme_basic: "NVMe M.2 擴充卡", nvme_raid: "NVMe M.2 擴充卡", u2: "U.2 / U.3 擴充方案", sata: "SATA 擴充卡", usb: "USB 擴充卡", nic: "網路擴充卡", other: "需客服協助確認", unknown: "需客服協助確認" };
+      var riskLabels = { low: "低風險：可直接購買", medium: "中風險：建議先確認", high: "高風險：請先聯繫客服，不建議直接下單" };
+      var latestReport = "";
+
+      function qs(selector) { return root.querySelector(selector); }
+      function qsa(selector) { return Array.prototype.slice.call(root.querySelectorAll(selector)); }
+      function label(group, value) { return (labels[group] && labels[group][value]) || "不確定"; }
+      function raise(current, next) {
+        var rank = { low: 1, medium: 2, high: 3 };
+        return rank[next] > rank[current] ? next : current;
+      }
+      function unique(items) {
+        return items.filter(Boolean).filter(function (item, index, arr) { return arr.indexOf(item) === index; });
+      }
+      function plans(goal) {
+        var name = categories[goal] || categories.other;
+        return [
+          { name: "超值方案", description: "適合一般擴充、預算優先、需求單純的 " + name + " 選型。" },
+          { name: "穩定方案", description: "適合長時間使用、資料備份、NAS、監控、工作站，優先考量穩定性與散熱。" },
+          { name: "專業方案", description: "適合多顆 SSD、RAID、高速工作流、10G 網路、伺服器或高負載用途。" }
+        ];
+      }
+      function listText(items) {
+        return items.length ? items.map(function (item) { return "- " + item; }).join("\n") : "無";
+      }
+      function report(answers, result) {
+        return [
+          "【AUMLMASIG 擴充卡一鍵診斷單】",
+          "診斷時間：" + new Date().toLocaleString("zh-TW", { hour12: false }),
+          "使用裝置：" + (answers.device || "未填寫"),
+          "機器類型：" + label("deviceType", answers.deviceType),
+          "主要需求：" + label("goal", answers.goal),
+          "遇到痛點：" + (answers.pain.length ? answers.pain.map(function (item) { return label("pain", item); }).join("、") : "未選擇"),
+          "PCIe 插槽：" + label("pcie", answers.pcie),
+          "M.2 類型：" + label("m2Type", answers.m2Type),
+          "長時間使用：" + label("longrun", answers.longrun),
+          "作業系統：" + label("os", answers.os),
+          "補充說明：" + (answers.notes || "未填寫"),
+          "風險等級：" + result.riskLabel,
+          "系統建議：" + result.summary,
+          "相容提醒：",
+          listText(result.warnings),
+          "購買前確認事項：",
+          listText(result.checklist),
+          "",
+          "請客服協助確認：",
+          "",
+          "1. 此主機是否可安裝對應擴充卡？",
+          "2. 是否需要確認 PCIe 插槽尺寸與通道？",
+          "3. 是否需要推薦超值 / 穩定 / 專業方案？"
+        ].join("\n");
+      }
+      function diagnose(answers) {
+        var pain = answers.pain || [];
+        var warnings = [];
+        var checklist = ["確認主機是否有可用 PCIe 插槽、插槽尺寸與可用通道。", "確認機殼空間、散熱條件與目標裝置規格。", "確認作業系統與用途是否符合預期。"];
+        var risk = "low";
+        var title = "已產生擴充卡選型建議";
+        var summary = "依目前填寫資料，可先參考建議方案與購買前確認事項。";
+        var goal = answers.goal || "unknown";
+
+        if (answers.pcie === "none") {
+          risk = raise(risk, "high");
+          title = "目前不建議直接購買 PCIe 擴充卡";
+          warnings.push("筆電、部分迷你主機或無 PCIe 插槽設備，通常無法安裝 PCIe 擴充卡。");
+          summary = "目前資料顯示可能沒有可用 PCIe 插槽，建議先聯繫客服確認可安裝方式。";
+        }
+        if (answers.deviceType === "laptop") {
+          warnings.push("筆電通常不能安裝標準 PCIe 擴充卡，需確認是否有其他外接或原廠支援方案。");
+          risk = raise(risk, answers.pcie === "x1" || answers.pcie === "x4" || answers.pcie === "x16" ? "medium" : "high");
+        }
+        if (goal === "unknown" || goal === "other") {
+          risk = raise(risk, "medium");
+          summary = "目前需求仍不夠明確，建議複製診斷單提供客服確認。";
+          checklist.push("補充希望擴充的裝置類型、數量、速度需求與預算方向。");
+        }
+        if (goal === "nvme_raid") {
+          warnings.push("多顆 NVMe / RAID 可能需要主機板支援 PCIe Bifurcation。");
+          if (answers.pcie === "x1") {
+            risk = raise(risk, "medium");
+            warnings.push("PCIe x1 頻寬通常不足以發揮多顆 NVMe / RAID 的效能。");
+          }
+          if (answers.pcie === "unknown") {
+            risk = raise(risk, "medium");
+            warnings.push("PCIe 插槽與通道尚未確認，建議先確認主機板規格。");
+          }
+          summary = "建議優先確認 PCIe 通道配置與主機板分岔支援，再選擇 NVMe 擴充方案。";
+        }
+        if (goal === "nvme_basic") {
+          if (answers.m2Type === "sata") {
+            risk = raise(risk, "medium");
+            warnings.push("SATA M.2 與 NVMe M.2 不相同，購買前需確認 SSD 規格。");
+          }
+          if (answers.pcie === "x1") {
+            risk = raise(risk, "medium");
+            warnings.push("PCIe x1 可用但速度會受插槽頻寬限制。");
+          }
+          summary = "建議選擇 NVMe M.2 擴充卡，並先確認 SSD 類型與 PCIe 插槽通道。";
+        }
+        if (goal === "u2") {
+          risk = raise(risk, "medium");
+          warnings.push("U.2 / U.3 需確認 SSD 規格、線材、供電與主機板 PCIe 通道。");
+          summary = "建議選擇 U.2 / U.3 對應方案，購買前需確認線材與供電條件。";
+        }
+        if (goal === "sata") {
+          summary = "建議選擇 SATA 擴充卡，並確認硬碟數量、連接埠需求與作業系統支援。";
+          if (answers.longrun === "yes") warnings.push("長時間使用建議選擇穩定晶片與散熱較佳的 SATA 擴充方案。");
+        }
+        if (goal === "usb") {
+          summary = "建議選擇 USB 擴充卡，並確認需要的 USB 版本、連接埠數量與供電需求。";
+          if ((answers.notes || "").toLowerCase().indexOf("20gbps") >= 0) {
+            risk = raise(risk, "medium");
+            warnings.push("USB 20Gbps 需確認主機 PCIe 頻寬與前端裝置支援。");
+          }
+        }
+        if (goal === "nic") {
+          summary = "建議選擇網路擴充卡，並確認網路速度、交換器、線材與散熱需求。";
+          if ((answers.notes || "").toLowerCase().indexOf("10g") >= 0) {
+            risk = raise(risk, "medium");
+            warnings.push("10G 網路需確認 PCIe 插槽頻寬、散熱、交換器與網路線規格。");
+          }
+        }
+        if (pain.indexOf("speed") >= 0) warnings.push("實際速度會受主機板插槽通道、晶片、線材、SSD / 裝置本身影響。");
+        if (pain.indexOf("temp") >= 0 || answers.longrun === "yes") warnings.push("長時間使用建議優先選擇散熱與穩定性較好的方案。");
+        if (pain.indexOf("compat") >= 0 || pain.indexOf("install") >= 0) checklist.push("購買前建議提供主機板型號、CPU、作業系統與目標用途給客服確認。");
+
+        var result = {
+          riskLevel: risk,
+          riskLabel: riskLabels[risk],
+          title: title,
+          summary: summary,
+          recommendedCategory: categories[goal] || categories.other,
+          recommendedUrl: risk === "high" ? null : (links[goal] || null),
+          plans: plans(goal),
+          warnings: unique(warnings),
+          checklist: unique(checklist),
+          reportText: ""
+        };
+        result.reportText = report(answers, result);
+        return result;
+      }
+      function read(form) {
+        var data = new FormData(form);
+        return {
+          device: String(data.get("device") || "").trim(),
+          deviceType: String(data.get("device_type") || "unknown"),
+          goal: String(data.get("goal") || "unknown"),
+          pain: qsa("input[name='pain']:checked").map(function (input) { return input.value; }),
+          pcie: String(data.get("pcie") || "unknown"),
+          m2Type: String(data.get("m2_type") || "unknown"),
+          longrun: String(data.get("longrun") || "unknown"),
+          os: String(data.get("os") || "unknown"),
+          notes: String(data.get("notes") || "").trim()
+        };
+      }
+      function renderList(element, items) {
+        element.innerHTML = "";
+        items.forEach(function (item) {
+          var li = document.createElement("li");
+          li.textContent = item;
+          element.appendChild(li);
+        });
+      }
+      function renderPlans(element, items) {
+        element.innerHTML = "";
+        items.forEach(function (plan) {
+          var item = document.createElement("article");
+          item.className = "auml-plan";
+          item.innerHTML = "<h4></h4><p></p>";
+          item.querySelector("h4").textContent = plan.name;
+          item.querySelector("p").textContent = plan.description;
+          element.appendChild(item);
+        });
+      }
+      function render(result) {
+        latestReport = result.reportText;
+        var panel = qs("[data-auml-result]");
+        panel.className = "auml-result auml-risk-" + result.riskLevel;
+        panel.hidden = false;
+        qs("[data-auml-risk]").textContent = result.riskLabel;
+        qs("[data-auml-title]").textContent = result.title;
+        qs("[data-auml-summary]").textContent = result.summary;
+        qs("[data-auml-category]").textContent = result.recommendedCategory;
+        renderPlans(qs("[data-auml-plans]"), result.plans);
+        renderList(qs("[data-auml-warnings]"), result.warnings.length ? result.warnings : ["目前未發現明確相容性提醒，仍建議購買前確認主機規格。"]);
+        renderList(qs("[data-auml-checklist]"), result.checklist);
+        qs("[data-auml-report]").value = result.reportText;
+        if (result.recommendedUrl) {
+          qs("[data-auml-product]").href = result.recommendedUrl;
+          qs("[data-auml-product]").hidden = false;
+          qs("[data-auml-no-product]").hidden = true;
+        } else {
+          qs("[data-auml-product]").hidden = true;
+          qs("[data-auml-no-product]").hidden = false;
+        }
+        qs("[data-auml-download]").href = downloadCenterUrl;
+        qs("[data-auml-support]").href = supportUrl;
+      }
+      function copy() {
+        var box = qs("[data-auml-report]");
+        var status = qs("[data-auml-copy-status]");
+        if (!latestReport) {
+          status.textContent = "請先完成診斷再複製診斷單";
+          return;
+        }
+        function fallback() {
+          box.focus();
+          box.select();
+          var ok = document.execCommand("copy");
+          status.textContent = ok ? "已複製，可貼給客服確認" : "瀏覽器未允許複製，請手動選取診斷單內容";
+        }
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(latestReport).then(function () {
+            status.textContent = "已複製，可貼給客服確認";
+          }).catch(fallback);
+        } else {
+          fallback();
+        }
+      }
+
+      qs("[data-auml-form]").addEventListener("submit", function (event) {
+        event.preventDefault();
+        render(diagnose(read(event.currentTarget)));
+      });
+      qs("[data-auml-form]").addEventListener("reset", function () {
+        window.setTimeout(function () {
+          latestReport = "";
+          qs("[data-auml-result]").hidden = true;
+          qs("[data-auml-copy-status]").textContent = "";
+        }, 0);
+      });
+      qs("[data-auml-copy]").addEventListener("click", copy);
+    })();
+  </script>
+</section>
