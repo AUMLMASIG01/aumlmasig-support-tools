@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="description" content="AUMLMASIG PCIe 擴充卡適用主機板品牌參考表。涵蓋華碩、技嘉、微星、華擎及工業電腦、伺服器、品牌整機等平台，並提供購買前 PCIe 規格確認要點。">
+<title>AUMLMASIG｜PCIe 擴充卡主機板品牌相容性規格表</title>
+<style>
+:root{--ink:#12253c;--ink2:#3c536a;--muted:#63778b;--brand:#1463dc;--blue:#eaf2ff;--edge:#dfe7f0;--canvas:#f5f7fb;--white:#fff;--teal:#14796f;--amber:#94630b;--shadow:0 14px 50px rgba(15,44,86,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--canvas);color:var(--ink);font:15px/1.65 "Noto Sans TC","Microsoft JhengHei",Arial,sans-serif}a{color:inherit}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #5fa4ff;outline-offset:3px} .page{max-width:1210px;margin:0 auto;padding:24px 24px 50px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:4px 2px 22px}.wordmark{font-size:19px;font-weight:950;letter-spacing:.08em;color:#0a2d65;line-height:1}.wordmark small{display:block;margin-top:9px;font-size:10px;color:var(--muted);letter-spacing:.22em;font-weight:700}.meta{font-size:12px;font-weight:700;color:#728296;letter-spacing:.03em}.hero{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(111deg,#0b2449 0%,#103e81 58%,#1667b7 100%);color:#fff;padding:45px 46px 43px;box-shadow:0 20px 48px rgba(16,55,112,.16)}.hero:before,.hero:after{content:"";position:absolute;pointer-events:none}.hero:before{inset:0;opacity:.24;background-image:linear-gradient(90deg,transparent 96%,#9ddaff 96%),linear-gradient(0deg,transparent 96%,#9ddaff 96%);background-size:44px 44px;mask-image:linear-gradient(90deg,transparent 33%,black)}.hero:after{width:430px;height:430px;right:-130px;top:-130px;border:1px solid rgba(255,255,255,.24);border-radius:50%;box-shadow:0 0 0 58px rgba(255,255,255,.027),0 0 0 116px rgba(255,255,255,.022)}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#b9defd;font-size:12px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}.eyebrow:before{content:"";height:7px;width:7px;border-radius:50%;background:#42d7ea;box-shadow:0 0 0 5px rgba(66,215,234,.14)}h1{font-size:clamp(27px,3.2vw,41px);font-weight:900;line-height:1.35;letter-spacing:-.02em;margin:19px 0 12px;max-width:790px}.hero p{margin:0;color:#d7e9fa;font-size:15px;max-width:660px}.hero strong{color:#fff}.hero-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:27px}.hero-chip{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.2);color:#eff7ff;padding:6px 11px;border-radius:7px;font-size:12px;font-weight:800;backdrop-filter:blur(6px)}.hero-chip.primary{background:#fff;color:#11467c;border-color:#fff}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0 28px}.metric{background:#fff;border:1px solid var(--edge);padding:18px 20px;border-radius:13px;display:flex;align-items:center;gap:15px}.metric .num{font-size:30px;font-weight:900;letter-spacing:-.04em;color:#0b417d;line-height:1}.metric .desc{font-size:12px;color:var(--muted);font-weight:750;line-height:1.55}.section{margin-top:27px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-bottom:14px}.section h2{margin:0;font-size:22px;letter-spacing:-.02em}.section .eyeline{display:block;font-size:11px;color:var(--brand);font-weight:900;letter-spacing:.14em;margin-bottom:2px}.section-info{color:var(--muted);font-size:13px;margin:0}.major{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.major-card{border:1px solid #d9e3ef;background:#fff;border-radius:12px;padding:20px;min-height:138px;box-shadow:0 4px 18px rgba(22,57,95,.035)}.major-card .ordinal{font-size:11px;color:#7891ab;font-weight:800;letter-spacing:.1em}.major-card .name{font-size:24px;font-weight:950;letter-spacing:-.055em;margin-top:11px;line-height:1.1}.major-card .sub{font-size:12px;color:#687e96;margin-top:7px}.major-card .divider{background:var(--brand);height:3px;width:28px;margin-top:17px;border-radius:3px}
+.card{background:#fff;border:1px solid var(--edge);border-radius:15px;box-shadow:var(--shadow)}.table-panel{overflow:hidden}.table-heading{padding:23px 26px 17px}.intro-row{display:flex;align-items:start;justify-content:space-between;gap:16px}.table-heading h2{margin:0;font-size:21px}.table-heading p{margin:5px 0 0;color:var(--muted);font-size:13px}.flag{white-space:nowrap;border-radius:6px;padding:6px 9px;background:#eff6ff;border:1px solid #cfe3ff;color:#1458a8;font-size:11px;font-weight:800}.toolbar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:21px}.tabs{display:flex;gap:6px;flex-wrap:wrap}.tab{padding:9px 12px;border-radius:8px;border:1px solid #e2e9f1;color:#536b80;background:#f8fafc;font-size:12px;font-weight:800;transition:background .16s,border-color .16s}.tab:hover{border-color:#b0ceef}.tab.active{background:#155bc0;color:#fff;border-color:#155bc0}.tab b{font-size:10px;margin-left:3px;opacity:.78}.search{position:relative;min-width:245px;flex:1;max-width:290px}.search:before{content:'⌕';font-size:23px;position:absolute;left:12px;top:5px;color:#8398aa}.search input{width:100%;height:40px;padding:0 14px 0 35px;border:1px solid #d7e2ee;border-radius:8px;background:#fff;color:#173352;font-size:13px}.search input::placeholder{color:#9ba8b5}.table-topline{padding:12px 26px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;border-top:1px solid #ecf0f5}.table-topline strong{color:#1958a7}.swipe-hint{display:none}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:1060px;text-align:left;font-size:13px}thead{background:#eef3fa;color:#47637e;font-weight:800}th{white-space:nowrap;font-size:11px;letter-spacing:.05em;font-weight:850;padding:13px 12px;border-top:1px solid #e4ebf3;border-bottom:1px solid #dae4ef}th:first-child,td:first-child{padding-left:26px}th:last-child,td:last-child{padding-right:26px}td{border-bottom:1px solid #edf0f4;padding:15px 12px;vertical-align:middle}tbody tr:hover{background:#f8fbff}tbody tr:last-child td{border-bottom:0}td.number{color:#9badbf;font:700 12px/1.4 Arial,sans-serif}.brand-cell{display:flex;align-items:center;gap:11px;min-width:176px}.brand-mark{display:inline-flex;width:34px;height:34px;flex:0 0 auto;align-items:center;justify-content:center;border-radius:9px;background:#eaf2fc;color:#174e98;font-size:16px;font-weight:900}.brand-name{display:block;color:#173557;font-weight:850;text-decoration:none;line-height:1.3;white-space:nowrap}.brand-name[href]:hover{color:var(--brand);text-decoration:underline}.external{font-size:11px;color:#8ea3bb}.brand-zh{display:block;color:#8b9aab;font-size:11px;line-height:1.6}.series{color:#45617a;max-width:240px}.kind{display:inline-block;font-size:11px;font-weight:800;padding:4px 9px;border-radius:6px;white-space:nowrap}.kind-diy{color:#185eb0;background:#eaf3ff}.kind-ind{color:#00776c;background:#e4f7f2}.kind-server{color:#6d4c9b;background:#f1edff}.kind-oem{color:#865a14;background:#fff5df}.requirements{font-size:12px;color:#5c7285}.status{color:#8c671c;background:#fff8e7;border:1px solid #f2e4be;border-radius:30px;padding:5px 8px;display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:850;white-space:nowrap}.status-dot{width:6px;height:6px;border-radius:50%;background:#dfad3b}.empty{display:none;padding:44px;text-align:center;color:var(--muted)}.table-caption{padding:14px 26px;background:#fafcff;border-top:1px solid #e5ebf3;color:#63778c;font-size:12px}
+.factbox{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.fact{border:1px solid var(--edge);background:#fff;border-radius:12px;padding:21px 22px}.fact .tag{font-size:11px;color:#1662bf;font-weight:850;letter-spacing:.06em}.fact h3{font-size:16px;margin:9px 0 8px}.fact p{font-size:13px;color:#596c7d;margin:0}.note-bar{display:flex;gap:13px;padding:16px 18px;background:#fff8ea;border-left:4px solid #d19a31;color:#65512f;border-radius:9px;margin-top:13px;font-size:13px}.note-bar strong{white-space:nowrap}.customer-copy{display:flex;align-items:stretch;gap:20px;padding:24px 28px}.customer-copy h2{font-size:19px;margin:0 0 10px}.customer-copy p{color:#41586e;font-size:13px;line-height:1.9;margin:0}.customer-copy .left{flex:1}.customer-copy .quote-mark{width:5px;background:#2b79d4;border-radius:5px;flex-shrink:0}.footer{display:flex;justify-content:space-between;align-items:start;gap:24px;padding:23px 4px 0;color:#73869b;font-size:11px}.footer a{color:#476c97}.footer .links{display:flex;flex-wrap:wrap;gap:7px 15px}.bottom-actions{display:flex;gap:8px}.action{border:1px solid #cad9eb;border-radius:8px;background:#fff;color:#244c7c;padding:8px 13px;font-weight:800;font-size:12px}.action:hover{background:#eef6ff}.action.primary{background:#1762c4;color:#fff;border-color:#1762c4}.sr-only{position:absolute;height:1px;width:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media(max-width:1000px){.metrics,.major{grid-template-columns:repeat(2,1fr)}.factbox{grid-template-columns:1fr}.search{max-width:none}.hero{padding:33px}}
+@media(max-width:650px){.swipe-hint{display:block;margin:0;padding:6px 17px 9px;color:#55718b;font-size:11px;text-align:right;background:#fff}.page{padding:12px 12px 35px}.topbar{padding:9px 3px 19px}.wordmark{font-size:16px}.meta{font-size:10px}.hero{padding:29px 24px;border-radius:16px}.hero p{font-size:13px}h1{font-size:27px}.metrics{gap:8px;margin-bottom:20px}.metric{padding:15px 12px;gap:10px}.metric .num{font-size:25px}.metric .desc{font-size:10px}.major{gap:8px}.major-card{padding:15px;min-height:124px}.major-card .name{font-size:21px}.section h2{font-size:19px}.section-head{align-items:start}.table-heading{padding:19px 17px 15px}.intro-row{display:block}.flag{display:inline-flex;margin-top:8px}.tabs{gap:5px}.tab{padding:7px 9px}.search{flex-basis:100%}.table-topline,.table-caption{padding:12px 17px}.customer-copy{padding:18px}.footer{display:block}.bottom-actions{margin-top:15px}}
+@media print{ @page{size:A4 landscape;margin:12mm}body{background:#fff;font-size:11px;-webkit-print-color-adjust:exact;print-color-adjust:exact}.page{max-width:none;padding:0}.topbar{padding-bottom:11px}.hero{box-shadow:none;padding:20px 25px;border-radius:10px}.hero h1{font-size:23px;margin:6px 0}.hero-chip{font-size:9px;padding:3px 6px}.hero-chips{margin-top:10px}.metrics{gap:8px;margin:8px 0}.metric{padding:9px}.metric .num{font-size:20px}.section{margin-top:14px}.section-head{margin-bottom:7px}.section h2{font-size:17px}.major-card{padding:10px;min-height:auto}.major-card .name{font-size:18px;margin-top:5px}.major-card .divider{margin-top:7px}.card{box-shadow:none}.table-heading{padding:11px 13px}.toolbar,.bottom-actions,.swipe-hint{display:none!important}.table-topline{padding:8px 13px}.table-wrap{overflow:visible}table{min-width:0;font-size:9px}th{font-size:9px;padding:6px}td{padding:6px}th:first-child,td:first-child{padding-left:8px}th:last-child,td:last-child{padding-right:8px}.brand-mark{display:none}.brand-cell{min-width:90px}.brand-name{font-size:10px}.kind,.status{font-size:9px;padding:2px 5px}.series,.requirements{font-size:9px}.factbox{grid-template-columns:repeat(3,1fr)}.fact{padding:10px}.fact h3{font-size:12px;margin:3px 0}.fact p,.note-bar,.customer-copy p{font-size:10px}.note-bar{padding:8px}.customer-copy{padding:10px}.footer{padding:10px 0 0}tr{break-inside:avoid}.major-card,.fact,.note-bar{break-inside:avoid}.section{break-inside:auto}}
+/* GitHub Pages public edition: verified inquiry route, no tracking/scripts/services added. */
+.sales-cta{display:inline-flex;align-items:center;justify-content:center;min-height:41px;margin-top:18px;padding:10px 18px;background:#ffffff;color:#154479;border-radius:10px;font-weight:850;font-size:14px;text-decoration:none;box-shadow:0 3px 11px #0b244950}
+.sales-cta:hover{background:#edf6ff}.sales-cta:focus-visible{outline:3px solid #55d4ef;outline-offset:3px}
+@media print{.sales-cta{display:none!important}}
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="topbar"><div class="wordmark">AUMLMASIG<small>PCI EXPRESS COMPATIBILITY GUIDE</small></div><div class="meta">公開資料表 · v1.1 · 2026.10.22</div></header>
+  <section class="hero" aria-labelledby="page-title">
+    <span class="eyebrow">STANDARD PCI EXPRESS INTERFACE</span>
+    <h1 id="page-title">PCIe 擴充卡<br>主機板品牌相容性參考表</h1>
+    <p><strong>採用標準 PCI Express 介面設計</strong>，可依產品需求搭配多種消費級、工業級與伺服器主機板平台。實際適用性以<strong>主機板與擴充卡的具體規格</strong>為準。</p>
+    <div class="hero-chips" aria-label="主要特點"><span class="hero-chip primary">主流品牌平台</span><span class="hero-chip">PCIe 介面標準</span><span class="hero-chip">品牌與型號分級判斷</span><span class="hero-chip">購買前相容性確認</span></div>
+    <a class="sales-cta" href="https://b2b.aumlmasig.com/enterprise-inquiry/" target="_blank" rel="noopener noreferrer" aria-label="開啟 AUMLMASIG 企業採購與專案詢價頁面（另開視窗）">企業採購與專案詢價 ↗</a>
+  </section>
+  <div class="metrics" aria-label="品牌清單統計">
+    <div class="metric"><span class="num">10</span><span class="desc">消費級／DIY<br>主機板品牌</span></div>
+    <div class="metric"><span class="num">10</span><span class="desc">工業／嵌入式<br>主機板品牌</span></div>
+    <div class="metric"><span class="num">5</span><span class="desc">伺服器／工作站<br>品牌及產品線</span></div>
+    <div class="metric"><span class="num">4</span><span class="desc">品牌整機 OEM<br>參考平台</span></div>
+  </div>
+  <section class="section" aria-labelledby="major-heading">
+    <div class="section-head"><div><span class="eyeline">POPULAR PLATFORMS</span><h2 id="major-heading">主要消費級主機板品牌</h2></div><p class="section-info">以下為品牌參考，非全型號實測保證</p></div>
+    <div class="major">
+      <div class="major-card"><span class="ordinal">MAINSTREAM 01</span><div class="name">ASUS</div><div class="sub">華碩｜PRIME · TUF · ROG</div><div class="divider"></div></div>
+      <div class="major-card"><span class="ordinal">MAINSTREAM 02</span><div class="name">GIGABYTE</div><div class="sub">技嘉｜AORUS · GAMING · AERO</div><div class="divider"></div></div>
+      <div class="major-card"><span class="ordinal">MAINSTREAM 03</span><div class="name">MSI</div><div class="sub">微星｜PRO · MAG · MPG · MEG</div><div class="divider"></div></div>
+      <div class="major-card"><span class="ordinal">MAINSTREAM 04</span><div class="name">ASRock</div><div class="sub">華擎｜Pro RS · Steel Legend · Taichi</div><div class="divider"></div></div>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="table-title">
+    <div class="card table-panel">
+      <div class="table-heading"><div class="intro-row"><div><span class="eyeline">MOTHERBOARD BRAND REFERENCE</span><h2 id="table-title">主機板品牌適用性規格清單</h2><p>可依品牌、中文名稱、系列或平台類別搜尋。點選品牌名稱可查閱部分廠商官方網站。</p></div><span class="flag">品牌參考｜非逐型號實測報告</span></div>
+        <div class="toolbar"><div class="tabs" role="group" aria-label="主機板分類篩選">
+          <button type="button" class="tab active" data-filter="ALL" aria-pressed="true">全部 <b>29</b></button>
+          <button type="button" class="tab" data-filter="DIY" aria-pressed="false">消費級 <b>10</b></button>
+          <button type="button" class="tab" data-filter="IND" aria-pressed="false">工業級 <b>10</b></button>
+          <button type="button" class="tab" data-filter="SERVER" aria-pressed="false">伺服器 <b>5</b></button>
+          <button type="button" class="tab" data-filter="OEM" aria-pressed="false">品牌整機 <b>4</b></button>
+        </div><label class="search"><span class="sr-only">搜尋廠商品牌或系列名稱</span><input id="brandSearch" type="search" placeholder="搜尋 ASUS、研華、ROG…" autocomplete="off" aria-controls="compatTable"></label></div>
+      </div>
+      <div class="table-topline"><span id="resultCount" role="status" aria-live="polite">顯示 29 筆品牌／產品線參考項目</span><span>驗證狀態：<strong>型號待確認</strong></span></div>
+      <div class="swipe-hint">← 左右滑動查看完整規格表 →</div><div class="table-wrap"><table id="compatTable"><caption class="sr-only">AUMLMASIG PCIe 擴充卡主機板品牌相容性參考資料表，列示品牌與應確認事項，非具體型號相容性保證。</caption>
+        <thead><tr><th scope="col">編號</th><th scope="col">品牌 / 製造商</th><th scope="col">常見系列／定位</th><th scope="col">平台類別</th><th scope="col">相容性確認重點</th><th scope="col">驗證狀態</th></tr></thead>
+        <tbody>
+<tr data-group="DIY" data-search="asus 華碩 prime／tuf gaming／rog／proart 消費級／diy">
+      <td class="number" data-label="序號">01</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">A</span><div><a class="brand-name" href="https://www.asus.com/tw/motherboards-components/motherboards/all-series/" target="_blank" rel="noopener noreferrer" title="前往 ASUS 官方網站（另開視窗）">ASUS <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">華碩</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">PRIME／TUF Gaming／ROG／ProArt</td>
+      <td data-label="平台類別"><span class="kind kind-diy">消費級／DIY</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 PCIe 插槽、通道與驅動</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="DIY" data-search="gigabyte 技嘉 aorus／gaming／aero／ultra durable 消費級／diy">
+      <td class="number" data-label="序號">02</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">G</span><div><a class="brand-name" href="https://www.gigabyte.com/tw/Motherboard" target="_blank" rel="noopener noreferrer" title="前往 GIGABYTE 官方網站（另開視窗）">GIGABYTE <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">技嘉</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">AORUS／GAMING／AERO／ULTRA DURABLE</td>
+      <td data-label="平台類別"><span class="kind kind-diy">消費級／DIY</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 PCIe 插槽、通道與驅動</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="DIY" data-search="msi 微星 pro／mag／mpg／meg 消費級／diy">
+      <td class="number" data-label="序號">03</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">M</span><div><a class="brand-name" href="https://www.msi.com/Motherboard" target="_blank" rel="noopener noreferrer" title="前往 MSI 官方網站（另開視窗）">MSI <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">微星</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">PRO／MAG／MPG／MEG</td>
+      <td data-label="平台類別"><span class="kind kind-diy">消費級／DIY</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 PCIe 插槽、通道與驅動</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="DIY" data-search="asrock 華擎 pro rs／steel legend／taichi／phantom gaming 消費級／diy">
+      <td class="number" data-label="序號">04</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">A</span><div><a class="brand-name" href="https://www.asrock.com/mb/" target="_blank" rel="noopener noreferrer" title="前往 ASRock 官方網站（另開視窗）">ASRock <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">華擎</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">Pro RS／Steel Legend／Taichi／Phantom Gaming</td>
+      <td data-label="平台類別"><span class="kind kind-diy">消費級／DIY</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 PCIe 插槽、通道與驅動</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="DIY" data-search="biostar 映泰 racing／silver／valkyrie 消費級／diy">
+      <td class="number" data-label="序號">05</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">B</span><div><a class="brand-name" href="https://www.biostar.com.tw/" target="_blank" rel="noopener noreferrer" title="前往 BIOSTAR 官方網站（另開視窗）">BIOSTAR <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">映泰</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">RACING／SILVER／VALKYRIE</td>
+      <td data-label="平台類別"><span class="kind kind-diy">消費級／DIY</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 PCIe 插槽、通道與驅動</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="DIY" data-search="ecs 精英 商用與 oem 主機板 消費級／diy">
+      <td class="number" data-label="序號">06</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">E</span><div><a class="brand-name" href="https://www.ecs.com.tw/" target="_blank" rel="noopener noreferrer" title="前往 ECS 官方網站（另開視窗）">ECS <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">精英</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">商用與 OEM 主機板</td>
+      <td data-label="平台類別"><span class="kind kind-diy">消費級／DIY</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 PCIe 插槽、通道與驅動</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="DIY" data-search="colorful 七彩虹 igame／cvn 消費級／diy">
+      <td class="number" data-label="序號">07</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">C</span><div><span class="brand-name">COLORFUL</span><span class="brand-zh">七彩虹</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">iGame／CVN</td>
+      <td data-label="平台類別"><span class="kind kind-diy">消費級／DIY</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 PCIe 插槽、通道與驅動</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="DIY" data-search="maxsun 銘瑄 消費級與電競主機板 消費級／diy">
+      <td class="number" data-label="序號">08</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">M</span><div><span class="brand-name">MAXSUN</span><span class="brand-zh">銘瑄</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">消費級與電競主機板</td>
+      <td data-label="平台類別"><span class="kind kind-diy">消費級／DIY</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 PCIe 插槽、通道與驅動</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="DIY" data-search="onda 昂達 消費級主機板 消費級／diy">
+      <td class="number" data-label="序號">09</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">O</span><div><span class="brand-name">ONDA</span><span class="brand-zh">昂達</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">消費級主機板</td>
+      <td data-label="平台類別"><span class="kind kind-diy">消費級／DIY</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 PCIe 插槽、通道與驅動</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="DIY" data-search="nzxt nzxt n 系列主機板 消費級／diy">
+      <td class="number" data-label="序號">10</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">N</span><div><a class="brand-name" href="https://nzxt.com/" target="_blank" rel="noopener noreferrer" title="前往 NZXT 官方網站（另開視窗）">NZXT <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">NZXT</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">N 系列主機板</td>
+      <td data-label="平台類別"><span class="kind kind-diy">消費級／DIY</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 PCIe 插槽、通道與驅動</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="IND" data-search="advantech 研華 工業 atx／micro-atx／mini-itx 工業／嵌入式">
+      <td class="number" data-label="序號">11</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">A</span><div><a class="brand-name" href="https://www.advantech.com/" target="_blank" rel="noopener noreferrer" title="前往 Advantech 官方網站（另開視窗）">Advantech <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">研華</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">工業 ATX／Micro-ATX／Mini-ITX</td>
+      <td data-label="平台類別"><span class="kind kind-ind">工業／嵌入式</span></td>
+      <td data-label="相容性確認重點" class="requirements">確認是否具備可用 PCIe 插槽</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="IND" data-search="aaeon 研揚 工業與邊緣運算主機板 工業／嵌入式">
+      <td class="number" data-label="序號">12</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">A</span><div><a class="brand-name" href="https://www.aaeon.com/" target="_blank" rel="noopener noreferrer" title="前往 AAEON 官方網站（另開視窗）">AAEON <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">研揚</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">工業與邊緣運算主機板</td>
+      <td data-label="平台類別"><span class="kind kind-ind">工業／嵌入式</span></td>
+      <td data-label="相容性確認重點" class="requirements">確認是否具備可用 PCIe 插槽</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="IND" data-search="dfi 友通資訊 工業／嵌入式主機板 工業／嵌入式">
+      <td class="number" data-label="序號">13</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">D</span><div><a class="brand-name" href="https://www.dfi.com/" target="_blank" rel="noopener noreferrer" title="前往 DFI 官方網站（另開視窗）">DFI <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">友通資訊</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">工業／嵌入式主機板</td>
+      <td data-label="平台類別"><span class="kind kind-ind">工業／嵌入式</span></td>
+      <td data-label="相容性確認重點" class="requirements">確認是否具備可用 PCIe 插槽</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="IND" data-search="asrock industrial 華擎工業 工業／嵌入式主機板 工業／嵌入式">
+      <td class="number" data-label="序號">14</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">A</span><div><a class="brand-name" href="https://www.asrockind.com/" target="_blank" rel="noopener noreferrer" title="前往 ASRock Industrial 官方網站（另開視窗）">ASRock Industrial <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">華擎工業</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">工業／嵌入式主機板</td>
+      <td data-label="平台類別"><span class="kind kind-ind">工業／嵌入式</span></td>
+      <td data-label="相容性確認重點" class="requirements">確認是否具備可用 PCIe 插槽</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="IND" data-search="iei integration 威強電 工業主機板 工業／嵌入式">
+      <td class="number" data-label="序號">15</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">I</span><div><a class="brand-name" href="https://www.ieiworld.com/" target="_blank" rel="noopener noreferrer" title="前往 IEI Integration 官方網站（另開視窗）">IEI Integration <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">威強電</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">工業主機板</td>
+      <td data-label="平台類別"><span class="kind kind-ind">工業／嵌入式</span></td>
+      <td data-label="相容性確認重點" class="requirements">確認是否具備可用 PCIe 插槽</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="IND" data-search="axiomtek 艾讯 工業主機板 工業／嵌入式">
+      <td class="number" data-label="序號">16</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">A</span><div><a class="brand-name" href="https://www.axiomtek.com/" target="_blank" rel="noopener noreferrer" title="前往 Axiomtek 官方網站（另開視窗）">Axiomtek <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">艾讯</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">工業主機板</td>
+      <td data-label="平台類別"><span class="kind kind-ind">工業／嵌入式</span></td>
+      <td data-label="相容性確認重點" class="requirements">確認是否具備可用 PCIe 插槽</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="IND" data-search="avalue 安勤 工業主機板 工業／嵌入式">
+      <td class="number" data-label="序號">17</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">A</span><div><a class="brand-name" href="https://www.avalue.com/" target="_blank" rel="noopener noreferrer" title="前往 Avalue 官方網站（另開視窗）">Avalue <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">安勤</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">工業主機板</td>
+      <td data-label="平台類別"><span class="kind kind-ind">工業／嵌入式</span></td>
+      <td data-label="相容性確認重點" class="requirements">確認是否具備可用 PCIe 插槽</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="IND" data-search="portwell 瑞傳 工業主機板 工業／嵌入式">
+      <td class="number" data-label="序號">18</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">P</span><div><a class="brand-name" href="https://www.portwell.com.tw/" target="_blank" rel="noopener noreferrer" title="前往 Portwell 官方網站（另開視窗）">Portwell <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">瑞傳</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">工業主機板</td>
+      <td data-label="平台類別"><span class="kind kind-ind">工業／嵌入式</span></td>
+      <td data-label="相容性確認重點" class="requirements">確認是否具備可用 PCIe 插槽</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="IND" data-search="jetway 捷波資訊 工業主機板 工業／嵌入式">
+      <td class="number" data-label="序號">19</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">J</span><div><a class="brand-name" href="https://www.jetwayipc.com/" target="_blank" rel="noopener noreferrer" title="前往 Jetway 官方網站（另開視窗）">Jetway <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">捷波資訊</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">工業主機板</td>
+      <td data-label="平台類別"><span class="kind kind-ind">工業／嵌入式</span></td>
+      <td data-label="相容性確認重點" class="requirements">確認是否具備可用 PCIe 插槽</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="IND" data-search="kontron kontron 工業／嵌入式運算平台 工業／嵌入式">
+      <td class="number" data-label="序號">20</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">K</span><div><a class="brand-name" href="https://www.kontron.com/" target="_blank" rel="noopener noreferrer" title="前往 Kontron 官方網站（另開視窗）">Kontron <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">Kontron</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">工業／嵌入式運算平台</td>
+      <td data-label="平台類別"><span class="kind kind-ind">工業／嵌入式</span></td>
+      <td data-label="相容性確認重點" class="requirements">確認是否具備可用 PCIe 插槽</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="SERVER" data-search="supermicro 美超微 伺服器與工作站主機板 伺服器／工作站">
+      <td class="number" data-label="序號">21</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">S</span><div><a class="brand-name" href="https://www.supermicro.com/" target="_blank" rel="noopener noreferrer" title="前往 Supermicro 官方網站（另開視窗）">Supermicro <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">美超微</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">伺服器與工作站主機板</td>
+      <td data-label="平台類別"><span class="kind kind-server">伺服器／工作站</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 Riser、插槽與韌體限制</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="SERVER" data-search="asrock rack 華擎伺服器 伺服器與工作站主機板 伺服器／工作站">
+      <td class="number" data-label="序號">22</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">A</span><div><a class="brand-name" href="https://www.asrockrack.com/" target="_blank" rel="noopener noreferrer" title="前往 ASRock Rack 官方網站（另開視窗）">ASRock Rack <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">華擎伺服器</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">伺服器與工作站主機板</td>
+      <td data-label="平台類別"><span class="kind kind-server">伺服器／工作站</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 Riser、插槽與韌體限制</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="SERVER" data-search="tyan 泰安 伺服器與工作站主機板 伺服器／工作站">
+      <td class="number" data-label="序號">23</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">T</span><div><a class="brand-name" href="https://www.tyan.com/" target="_blank" rel="noopener noreferrer" title="前往 TYAN 官方網站（另開視窗）">TYAN <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">泰安</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">伺服器與工作站主機板</td>
+      <td data-label="平台類別"><span class="kind kind-server">伺服器／工作站</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 Riser、插槽與韌體限制</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="SERVER" data-search="gigabyte enterprise 技嘉企業級 企業級伺服器主機板系列 伺服器／工作站">
+      <td class="number" data-label="序號">24</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">G</span><div><a class="brand-name" href="https://www.gigabyte.com/Enterprise" target="_blank" rel="noopener noreferrer" title="前往 GIGABYTE Enterprise 官方網站（另開視窗）">GIGABYTE Enterprise <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">技嘉企業級</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">企業級伺服器主機板系列</td>
+      <td data-label="平台類別"><span class="kind kind-server">伺服器／工作站</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 Riser、插槽與韌體限制</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="SERVER" data-search="asus workstation / server 華碩工作站／伺服器 工作站與伺服器產品系列 伺服器／工作站">
+      <td class="number" data-label="序號">25</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">A</span><div><a class="brand-name" href="https://www.asus.com/" target="_blank" rel="noopener noreferrer" title="前往 ASUS Workstation / Server 官方網站（另開視窗）">ASUS Workstation / Server <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">華碩工作站／伺服器</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">工作站與伺服器產品系列</td>
+      <td data-label="平台類別"><span class="kind kind-server">伺服器／工作站</span></td>
+      <td data-label="相容性確認重點" class="requirements">核對 Riser、插槽與韌體限制</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="OEM" data-search="dell 戴爾 品牌桌機／工作站／伺服器整機 品牌整機 oem">
+      <td class="number" data-label="序號">26</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">D</span><div><a class="brand-name" href="https://www.dell.com/" target="_blank" rel="noopener noreferrer" title="前往 Dell 官方網站（另開視窗）">Dell <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">戴爾</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">品牌桌機／工作站／伺服器整機</td>
+      <td data-label="平台類別"><span class="kind kind-oem">品牌整機 OEM</span></td>
+      <td data-label="相容性確認重點" class="requirements">以整機型號、插槽、機箱／供電確認</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="OEM" data-search="hp 惠普 品牌桌機／工作站／伺服器整機 品牌整機 oem">
+      <td class="number" data-label="序號">27</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">H</span><div><a class="brand-name" href="https://www.hp.com/" target="_blank" rel="noopener noreferrer" title="前往 HP 官方網站（另開視窗）">HP <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">惠普</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">品牌桌機／工作站／伺服器整機</td>
+      <td data-label="平台類別"><span class="kind kind-oem">品牌整機 OEM</span></td>
+      <td data-label="相容性確認重點" class="requirements">以整機型號、插槽、機箱／供電確認</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="OEM" data-search="lenovo 聯想 品牌桌機／工作站／伺服器整機 品牌整機 oem">
+      <td class="number" data-label="序號">28</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">L</span><div><a class="brand-name" href="https://www.lenovo.com/" target="_blank" rel="noopener noreferrer" title="前往 Lenovo 官方網站（另開視窗）">Lenovo <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">聯想</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">品牌桌機／工作站／伺服器整機</td>
+      <td data-label="平台類別"><span class="kind kind-oem">品牌整機 OEM</span></td>
+      <td data-label="相容性確認重點" class="requirements">以整機型號、插槽、機箱／供電確認</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+<tr data-group="OEM" data-search="acer 宏碁 品牌桌機整機 品牌整機 oem">
+      <td class="number" data-label="序號">29</td>
+      <td data-label="品牌"><div class="brand-cell"><span class="brand-mark" aria-hidden="true">A</span><div><a class="brand-name" href="https://www.acer.com/" target="_blank" rel="noopener noreferrer" title="前往 Acer 官方網站（另開視窗）">Acer <span class="external" aria-hidden="true">↗</span></a><span class="brand-zh">宏碁</span></div></div></td>
+      <td data-label="常見系列／定位" class="series">品牌桌機整機</td>
+      <td data-label="平台類別"><span class="kind kind-oem">品牌整機 OEM</span></td>
+      <td data-label="相容性確認重點" class="requirements">以整機型號、插槽、機箱／供電確認</td>
+      <td data-label="驗證狀態"><span class="status"><span aria-hidden="true" class="status-dot"></span>型號待確認</span></td>
+    </tr>
+        </tbody></table></div>
+      <div class="empty" id="noMatch" role="status">沒有找到符合條件的品牌，請嘗試其他關鍵字。</div>
+      <div class="table-caption">備註：此處「型號待確認」代表尚未提供對應 AUMLMASIG 產品料號 × 指定主機板型號 × 使用環境的實測證據。品牌／產品線項目可能歸屬同一集團，29 筆並不表示 29 家獨立公司。</div>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="guide-title"><div class="section-head"><div><span class="eyeline">BEFORE PURCHASE</span><h2 id="guide-title">購買前，確認 3 項關鍵條件</h2></div></div>
+    <div class="factbox">
+      <article class="fact"><div class="tag">01 / SLOT & LANES</div><h3>PCIe 插槽與通道</h3><p>確認插槽外形（x1／x4／x8／x16）、實際電氣通道數、PCIe 世代，以及是否與其他裝置共享資源。</p></article>
+      <article class="fact"><div class="tag">02 / SYSTEM & DRIVER</div><h3>BIOS／作業系統／驅動</h3><p>核對 BIOS／UEFI、Windows 或 Linux 等系統版本及控制晶片驅動。辨識成功不代表所有功能與效能皆已驗證。</p></article>
+      <article class="fact"><div class="tag">03 / CARD REQUIREMENTS</div><h3>擴充卡專屬使用條件</h3><p>確認供電、機殼空間、擋板尺寸及特殊需求；例如部分多 M.2 被動轉接卡須主機板支援 PCIe 通道拆分。</p></article>
+    </div>
+    <div class="note-bar"><strong>重要提醒</strong><span>PCIe 世代具備互通設計，不等於所有廠牌、所有插槽、所有擴充卡功能均可無條件使用。較低世代或較少通道可能影響傳輸效能；如不確定，請提供主機板完整型號及欲購買的 AUMLMASIG 產品料號，先行確認。</span></div>
+  </section>
+  <section class="section card customer-copy" aria-labelledby="copy-title"><span class="quote-mark" aria-hidden="true"></span><div class="left"><span class="eyeline">OFFICIAL PRODUCT INFORMATION</span><h2 id="copy-title">產品相容性聲明</h2><p>AUMLMASIG PCIe 擴充周邊設備採用標準 PCI Express 介面，適用於具備符合該產品要求之 PCIe 插槽及系統條件的主機板平台。清單列示 ASUS、GIGABYTE、MSI、ASRock 等品牌及其他消費級、工業級、伺服器主機板與品牌整機平台，供選購前參考。實際適用性須依 AUMLMASIG 個別產品規格、主機板完整型號、插槽配置、BIOS／UEFI、作業系統、驅動程式及供電條件確認。列示品牌不代表品牌廠商背書，亦不代表所有型號皆經 AUMLMASIG 實機驗證。</p></div></section>
+  <footer class="footer"><div><strong style="color:#183b65">AUMLMASIG</strong> · PCIe 擴充設備相容性參考資料<br>文件代號：AUMLMASIG-PCIE-MB-COMPAT-PUBLIC · v1.1 · 2026-10-22<br>其他廠牌及產品名稱屬各權利人所有，品牌列名僅供規格參考。</div><div><div class="links"><a href="https://pcisig.com/are-pcie-50-products-compatible-products-built-prior-pcie-generations" target="_blank" rel="noopener noreferrer">PCI-SIG 相容性說明 ↗</a><a href="https://www.asus.com/tw/motherboards-components/motherboards/all-series/" target="_blank" rel="noopener noreferrer">ASUS 主機板 ↗</a><a href="https://www.gigabyte.com/tw/Motherboard" target="_blank" rel="noopener noreferrer">GIGABYTE 主機板 ↗</a></div><div class="bottom-actions"><button type="button" class="action" id="resetButton">重設篩選</button><button type="button" class="action primary" id="printButton">列印／儲存 PDF</button></div></div></footer>
+</main>
+<script>
+(()=>{
+  'use strict';
+  const buttons=Array.from(document.querySelectorAll('.tab'));
+  const input=document.getElementById('brandSearch');
+  const table=document.getElementById('compatTable');
+  const rows=Array.from(table.tBodies[0].rows);
+  const resultCount=document.getElementById('resultCount');
+  const noMatch=document.getElementById('noMatch');
+  let category='ALL';
+  const apply=()=>{
+    const needle=input.value.trim().toLocaleLowerCase();let count=0;
+    rows.forEach(row=>{const show=(category==='ALL'||row.dataset.group===category)&&row.dataset.search.includes(needle);row.hidden=!show;row.style.display=show?'':'none';if(show)count++});
+    resultCount.textContent='顯示 '+count+' 筆品牌／產品線參考項目';
+    noMatch.style.display=count?'none':'block';
+  };
+  buttons.forEach(button=>button.addEventListener('click',()=>{
+    category=button.dataset.filter;
+    buttons.forEach(b=>{const on=b===button;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});
+    apply();
+  }));
+  input.addEventListener('input',apply);
+  document.getElementById('resetButton').addEventListener('click',()=>{
+    input.value='';buttons[0].click();input.focus();
+  });
+  document.getElementById('printButton').addEventListener('click',()=>window.print());
+  apply();
+})();
+</script>
+</body>
+</html>
